@@ -168,29 +168,47 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        numLabel1.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel1.clipsToBounds = true
+        let labels = [numLabel1!, numLabel2!, numLabel3!, numLabel4!, numLabel5!, numLabel6!, numLabel7!]
         
-        numLabel2.layer.cornerRadius = numLabel1.bounds.width / 2 //shift + ctl + click
-        numLabel2.clipsToBounds = true
+        var nums = [Int]()
+        while nums.count < labels.count {
+            let rndNum = Int.random(in: 1...45)
+            if !nums.contains(rndNum){
+                nums.append(rndNum)
+            }
+        }
+        let sortedNums = nums.sorted()
+//        nums.sorted(by: >) //decending order
         
-        numLabel3.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel3.clipsToBounds = true
+        for (index,label) in labels.enumerated(){
+            label.layer.cornerRadius = label.bounds.width / 2
+            label.clipsToBounds = true
+            
+            label.text = "\(sortedNums[index])"  //String Interpolation "\()"
+            
+            switch sortedNums[index]{
+            case 1...10:
+                label.backgroundColor = UIColor.red
+                label.textColor = .white
+            case 11...20:
+                label.backgroundColor = UIColor.green
+                label.textColor = .black
+            case 21...30:
+                label.backgroundColor = UIColor.blue
+                label.textColor = .white
+            case 31...40:
+                label.backgroundColor = UIColor.yellow
+                label.textColor = .black
+            case 41...45:
+                label.backgroundColor = UIColor.green
+                label.textColor = .black
+            default:
+                break
+            }
+            numLabel7.backgroundColor = UIColor.purple
+            numLabel7.textColor = .white
+        }
         
-        numLabel4.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel4.clipsToBounds = true
-        
-        numLabel5.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel5.clipsToBounds = true
-        
-        numLabel6.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel6.clipsToBounds = true
-        
-        numLabel6.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel6.clipsToBounds = true
-        
-        numLabel7.layer.cornerRadius = numLabel1.bounds.width / 2
-        numLabel7.clipsToBounds = true
     }
 
 }
